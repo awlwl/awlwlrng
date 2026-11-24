@@ -1,0 +1,318 @@
+/* =========================================================
+   1. TEMA & KARANLIK SPOTIFY NEON STÜDYO ATMOSFERİ
+   ========================================================= */
+:root {
+    --bg-main: #090b10;
+    --panel-bg: rgba(15, 18, 28, 0.88);
+    --panel-border: rgba(255, 255, 255, 0.09);
+    --aura-color: #1db954;
+    --aura-glow: rgba(29, 185, 84, 0.28);
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#ambient-glow {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 24% 34%, var(--aura-glow), transparent 55%),
+        radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.14), transparent 46%),
+        radial-gradient(circle at 50% 94%, rgba(29, 185, 84, 0.1), transparent 45%);
+    transition: background 0.6s ease;
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--panel-border);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+.glass-sub {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 99px; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.32); }
+
+/* =========================================================
+   2. PLAK (VİNİL) & DÖNÜŞ ANİMASYONLARI
+   ========================================================= */
+@keyframes spinVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.vinyl-disc {
+    animation: spinVinyl 8.5s linear infinite;
+    animation-play-state: paused;
+    transition: box-shadow 0.45s ease, transform 0.35s ease;
+}
+.vinyl-disc.playing {
+    animation-play-state: running;
+}
+.vinyl-disc.rolling-fast {
+    animation: spinVinyl 0.22s linear infinite;
+    animation-play-state: running;
+}
+
+.vinyl-normal {
+    background:
+        radial-gradient(circle at center, transparent 35%, rgba(255,255,255,0.04) 35.5%, transparent 36.5%),
+        radial-gradient(circle at center, transparent 50%, rgba(255,255,255,0.05) 50.5%, transparent 51.5%),
+        radial-gradient(circle at center, transparent 67%, rgba(255,255,255,0.04) 67.5%, transparent 68.5%),
+        conic-gradient(from 0deg, #0e111b, #232a40 18%, #090b12 38%, #283049 58%, #0d1019 78%, #1e2438 92%, #0e111b);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.72), inset 0 0 16px rgba(255,255,255,0.05);
+}
+.vinyl-shiny {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(255,255,255,0.26) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #64748b, #f8fafc 20%, #94a3b8 42%, #ffffff 62%, #475569 80%, #e2e8f0 94%, #64748b);
+    box-shadow: 0 0 44px rgba(226, 232, 240, 0.58), inset 0 0 24px rgba(255,255,255,0.48);
+}
+.vinyl-gold {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(255,255,255,0.25) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #92400e, #fde047 18%, #d97706 38%, #fef08a 58%, #78350f 78%, #facc15 92%, #92400e);
+    box-shadow: 0 0 50px rgba(250, 204, 21, 0.62), inset 0 0 28px rgba(254, 240, 138, 0.52);
+}
+.vinyl-diamond {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(255,255,255,0.32) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #0284c7, #cffafe 18%, #22d3ee 40%, #ffffff 60%, #0369a1 78%, #67e8f9 92%, #0284c7);
+    box-shadow: 0 0 56px rgba(34, 211, 238, 0.68), inset 0 0 28px rgba(224, 242, 254, 0.6);
+}
+.vinyl-rainbow {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(255,255,255,0.28) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #ff2e93, #fbbf24, #22c55e, #06b6d4, #6366f1, #d946ef, #ff2e93);
+    box-shadow: 0 0 64px rgba(236, 72, 153, 0.68), 0 0 90px rgba(56, 189, 248, 0.42);
+}
+.vinyl-void {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(168,85,247,0.38) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #040109, #3b0764 20%, #080312 42%, #7e22ce 62%, #020106 82%, #581c87 95%, #040109);
+    box-shadow: 0 0 64px rgba(147, 51, 234, 0.78), inset 0 0 34px rgba(192, 132, 252, 0.5);
+}
+.vinyl-glitch {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(0,255,255,0.38) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #09090f, #ff0055 15%, #09090f 32%, #00f5ff 50%, #09090f 68%, #39ff14 84%, #09090f);
+    box-shadow: -5px 0 38px rgba(255, 0, 85, 0.68), 5px 0 38px rgba(0, 245, 255, 0.68);
+}
+.vinyl-cosmic {
+    background:
+        radial-gradient(circle at center, transparent 36%, rgba(254,240,138,0.45) 36.5%, transparent 37.5%),
+        conic-gradient(from 0deg, #09051f, #fef08a 14%, #312e81 30%, #f472b6 48%, #0c0a24 66%, #38bdf8 82%, #fde047 94%, #09051f);
+    box-shadow: 0 0 75px rgba(253, 224, 71, 0.72), 0 0 120px rgba(168, 85, 247, 0.52);
+}
+
+/* =========================================================
+   3. MUTASYON & NADİRLİK ÖZEL GÖRSEL EFEKTLERİ
+   ========================================================= */
+@keyframes rainbowFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes sheenSweep {
+    0% { transform: translateX(-140%) skewX(-24deg); }
+    100% { transform: translateX(260%) skewX(-24deg); }
+}
+@keyframes glitchJitter {
+    0%, 84%, 100% { transform: translate(0, 0); text-shadow: -2px 0 #ff0055, 2px 0 #00f5ff; }
+    88% { transform: translate(-2px, 1px); text-shadow: 3px 0 #ff0055, -3px 0 #00f5ff; }
+    92% { transform: translate(2px, -1px); text-shadow: -3px 0 #39ff14, 3px 0 #ff0055; }
+    96% { transform: translate(-1px, 0); text-shadow: 2px 0 #00f5ff, -2px 0 #ff0055; }
+}
+@keyframes voidPulse {
+    0%, 100% { box-shadow: 0 0 24px rgba(147, 51, 234, 0.52), inset 0 0 22px rgba(88, 28, 135, 0.48); }
+    50% { box-shadow: 0 0 50px rgba(192, 132, 252, 0.85), inset 0 0 36px rgba(147, 51, 234, 0.68); }
+}
+@keyframes cosmicGlow {
+    0%, 100% { filter: drop-shadow(0 0 12px rgba(254, 240, 138, 0.78)); }
+    50% { filter: drop-shadow(0 0 28px rgba(244, 114, 182, 0.95)); }
+}
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.84) translateY(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes screenShake {
+    0%, 100% { transform: translate(0, 0); }
+    15% { transform: translate(-7px, 4px); }
+    30% { transform: translate(6px, -5px); }
+    45% { transform: translate(-5px, -3px); }
+    60% { transform: translate(5px, 3px); }
+    75% { transform: translate(-3px, 2px); }
+}
+@keyframes eqBounce {
+    0%, 100% { height: 22%; }
+    50% { height: 95%; }
+}
+@keyframes cutsceneStar {
+    0% { transform: scale(0.1) rotate(0deg); opacity: 0; }
+    35% { transform: scale(1.25) rotate(90deg); opacity: 1; }
+    70% { transform: scale(0.96) rotate(180deg); opacity: 0.9; }
+    100% { transform: scale(1.4) rotate(240deg); opacity: 0; }
+}
+
+.text-rainbow {
+    background: linear-gradient(90deg, #ff2e93, #fbbf24, #22c55e, #22d3ee, #a855f7, #ff2e93);
+    background-size: 280% 280%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbowFlow 3.5s ease infinite;
+}
+
+.badge-rainbow {
+    background: linear-gradient(90deg, #ff2e93, #f59e0b, #10b981, #06b6d4, #8b5cf6, #ff2e93);
+    background-size: 260% 260%;
+    animation: rainbowFlow 3s ease infinite;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+}
+
+.text-glitch {
+    animation: glitchJitter 2.1s infinite;
+}
+
+.text-cosmic {
+    animation: cosmicGlow 2.4s ease-in-out infinite;
+}
+
+.card-sheen {
+    position: relative;
+    overflow: hidden;
+}
+.card-sheen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    animation: sheenSweep 3.2s infinite;
+    pointer-events: none;
+}
+
+.pop-in {
+    animation: popIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.shake-anim {
+    animation: screenShake 0.48s ease-out;
+}
+
+/* =========================================================
+   4. TONARM (PLAK İĞNESİ) & EKOLAYZER
+   ========================================================= */
+.tonearm {
+    transform-origin: 82% 16%;
+    transform: rotate(-28deg);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tonearm.engaged {
+    transform: rotate(2deg);
+}
+
+.eq-bar {
+    width: 4px;
+    border-radius: 99px;
+    background: var(--aura-color);
+    height: 22%;
+    transition: background-color 0.3s ease;
+}
+.eq-active .eq-bar {
+    animation: eqBounce 0.65s ease-in-out infinite;
+}
+.eq-active .eq-bar:nth-child(2) { animation-delay: 0.12s; animation-duration: 0.52s; }
+.eq-active .eq-bar:nth-child(3) { animation-delay: 0.26s; animation-duration: 0.74s; }
+.eq-active .eq-bar:nth-child(4) { animation-delay: 0.08s; animation-duration: 0.58s; }
+.eq-active .eq-bar:nth-child(5) { animation-delay: 0.31s; animation-duration: 0.68s; }
+
+/* Roll Button Pulse */
+.roll-btn-primary {
+    background: linear-gradient(135deg, #1db954 0%, #10b981 50%, #059669 100%);
+    box-shadow: 0 8px 32px rgba(29, 185, 84, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition: all 0.18s ease;
+}
+.roll-btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 38px rgba(29, 185, 84, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.36);
+}
+.roll-btn-primary:active:not(:disabled) {
+    transform: scale(0.97);
+}
+.roll-btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Tab Pills */
+.tab-btn {
+    color: #94a3b8;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+.tab-btn:hover {
+    color: #f1f5f9;
+    background: rgba(255, 255, 255, 0.04);
+}
+.tab-btn.active {
+    color: #1db954;
+    border-bottom-color: #1db954;
+    background: rgba(29, 185, 84, 0.08);
+}
+
+/* Toast notifications */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+}
+.toast-item {
+    pointer-events: auto;
+    animation: popIn 0.25s ease;
+}
+
+/* Cutscene overlay */
+#cutscene-overlay {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+.cutscene-star-burst {
+    animation: cutsceneStar 1.6s ease-out forwards;
+}
