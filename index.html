@@ -535,8 +535,13 @@
     <!-- Gizli Audio Elementi (iTunes 30sn Önizleme İçin) -->
     <audio id="preview-audio" preload="none"></audio>
 
-    <!-- 57.500+ Gerçek Yabancı Şarkı Veritabanı -->
-    <script src="data/songs-db.js"></script>
+    <!-- 57.500+ Gerçek Yabancı Şarkı Veritabanı (hem ana dizinde hem data/ içinde çalışır) -->
+    <script src="songs-db.js"></script>
+    <script>
+        if (!window.SHUFFLED_RAW_DB) {
+            document.write('<script src="data/songs-db.js"><\/script>');
+        }
+    </script>
     <!-- Oyun Motoru -->
     <script src="app.js"></script>
 </body>
